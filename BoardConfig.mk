@@ -123,6 +123,7 @@ BOARD_KERNEL_CMDLINE := \
     cgroup.memory=nokmem,nosocket \
     loop.max_part=7 \
     lpm_levels.sleep_disabled=1 \
+    kpti=off \
     msm_rtb.filter=0x237 \
     reboot=panic_warm \
     service_locator.enable=1 \
