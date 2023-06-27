@@ -249,6 +249,20 @@ ro.telephony.default_network=33,33
 persist.vendor.sensors.allow_non_default_discovery=true
 persist.vendor.sensors.sync_request=true
 
+# Touch Hax 
+touch.size.scale=1
+touch.size.bias=0
+touch.size.isSummed=0
+touch.pressure.scale=0.001
+touch.distance.calibration=none
+touch.distance.scale=0
+touch.coverage.calibration=box
+touch.gestureMode=spots
+MultitouchSettleInterval=1ms
+MultitouchMinDistance=1px
+TapInterval=1ms
+TapSlop=1px
+
 # USB
 vendor.usb.diag.func.name=diag
 vendor.usb.dpl.inst.name=dpl
