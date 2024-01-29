@@ -20,4 +20,9 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
      <!-- Preferred max refresh rate at AOD & Ambient Display, if supported by the display. -->
      <integer name="config_aodMaxRefreshRate">60</integer>
+
+     <!-- Preferred refresh rate at keyguard, if supported by the display. Overrides
+     keyguardMaxRefreshRate. -->
+     <integer name="config_keyguardRefreshRate">60</integer>
 </resources>
+
