@@ -342,6 +342,9 @@ PRODUCT_PACKAGES += \
     OPlusSettingsResTarget \
     OPlusSystemUIResTarget \
     WifiResTarget
+    
+DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay-lineage
 
 # Oplus Camera
 ifeq ($(WITH_OPLUS_CAMERA),true) # use export WITH_OPLUS_CAMERA=true after lunch to build camera
