@@ -392,6 +392,10 @@ on post-fs-data
     #Create dir for TUI
     mkdir /data/vendor/tui 0700 system drmrpc
 
+    # Workarround for cache
+    rm /data/resource-cache
+    rm /data/system/package_cache
+
 service nqnfcinfo /system/vendor/bin/nqnfcinfo
     class late_start
     group nfc
