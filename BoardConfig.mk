@@ -101,7 +101,7 @@ TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(DEVICE_PATH)/device_framework_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
-    vendor/derp/config/device_framework_matrix.xml
+
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 ODM_MANIFEST_FILES := $(DEVICE_PATH)/manifest_odm.xml
@@ -114,13 +114,16 @@ ODM_MANIFEST_NFC_FILES := \
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_oplus
 
 # Kernel
-BOARD_BOOT_HEADER_VERSION := 2
 BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_BOOT_HEADER_VERSION := 2
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_KERNEL_CMDLINE := \
     androidboot.hardware=qcom \
-    androidboot.memcg=1 \
     androidboot.usbcontroller=a600000.dwc3 \
     cgroup.memory=nokmem,nosocket \
+    earlycon=msm_geni_serial,0xa90000 \
+    kpti=off \
     loop.max_part=7 \
     lpm_levels.sleep_disabled=1 \
     kpti=off \
@@ -128,18 +131,21 @@ BOARD_KERNEL_CMDLINE := \
     reboot=panic_warm \
     service_locator.enable=1 \
     swiotlb=2048
+KERNEL_CUSTOM_LLVM := true
 BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_SEPARATED_DTBO := true
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-BOARD_RAMDISK_USE_LZ4 := true
+TARGET_KERNEL_ADDITIONAL_FLAGS += NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip
+TARGET_NO_KERNEL_OVERRIDE := true
+TARGET_NO_KERNEL := false
+TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_CLANG_VERSION := r487747c
-TARGET_KERNEL_ADDITIONAL_FLAGS := BRAND_SHOW_FLAG=realme
-TARGET_KERNEL_SOURCE := kernel/realme/sm8250
-TARGET_KERNEL_CONFIG := vendor/sm8250_defconfig
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+TARGET_PREBUILT_KERNEL := device/realme/spartan-kernel/Image
+PRODUCT_COPY_FILES += \
+  $(TARGET_PREBUILT_KERNEL):kernel
+BOARD_PREBUILT_DTBOIMAGE := device/realme/spartan-kernel/dtbo.img
+BOARD_PREBUILT_DTBIMAGE_DIR := device/realme/spartan-kernel/dtb
 
 # Platform
-BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOARD_PLATFORM := kona
 
 # Metadata
