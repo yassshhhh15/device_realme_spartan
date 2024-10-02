@@ -34,4 +34,14 @@
         <item>org.thunderdog.challegram</item>
         <item>us.zoom.videomeetings</item>
     </string-array>
+    <!-- The list of package IDs that are allowed to skip camera high frame rate checks. -->
+    <string-array name="config_cameraHFRPrivAppList" translatable="false">
+        <item>com.oplus.camera</item>
+        <item>com.google.android.GoogleCameraEng</item>
+        <item>org.codeaurora.snapcam</item>
+        <item>com.snapchat.android</item>
+        <item>com.instagram.android</item>
+        <item>org.telegram.messenger</item>
+        <item>com.whatsapp</item>
+    </string-array>
 </resources>
